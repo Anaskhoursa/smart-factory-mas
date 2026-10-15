@@ -1,0 +1,115 @@
+{
+  "window_size": 30,
+  "features": [
+    "vibration",
+    "temperature",
+    "throughput",
+    "error_rate",
+    "vibration_roll_mean",
+    "temperature_roll_mean",
+    "throughput_roll_mean",
+    "error_rate_roll_mean",
+    "vibration_roll_std",
+    "temperature_roll_std",
+    "throughput_roll_std",
+    "error_rate_roll_std",
+    "vibration_trend",
+    "temperature_trend",
+    "throughput_trend",
+    "error_rate_trend",
+    "is_M1",
+    "is_M2",
+    "is_M3",
+    "is_M4"
+  ],
+  "rul_cap": 400,
+  "best_epoch": 8,
+  "validation": {
+    "capped_target_metrics": {
+      "mae": 62.75125503540039,
+      "rmse": 80.85924063998499,
+      "r2": 0.422782301902771,
+      "n": 16123
+    },
+    "raw_target_metrics": {
+      "mae": 62.75125503540039,
+      "rmse": 80.85924063998499,
+      "r2": 0.422782301902771,
+      "n": 16123
+    }
+  },
+  "test": {
+    "sliding_window_all_steps": {
+      "capped_target_metrics": {
+        "mae": 54.79030227661133,
+        "rmse": 73.04139852465518,
+        "r2": 0.531326413154602,
+        "n": 19943
+      },
+      "raw_target_metrics": {
+        "mae": 54.79030227661133,
+        "rmse": 73.04139852465518,
+        "r2": 0.531326413154602,
+        "n": 19943
+      },
+      "n_windows": 19943,
+      "skipped_for_step_gaps": 2316,
+      "by_failure_mode": {
+        "bearing_wear": {
+          "mae": 51.47123718261719,
+          "rmse": 69.27833566829352,
+          "r2": 0.5815616846084595,
+          "n": 9646
+        },
+        "overheating": {
+          "mae": 39.3267936706543,
+          "rmse": 54.74787292529044,
+          "r2": 0.7310453057289124,
+          "n": 2488
+        },
+        "random_shock": {
+          "mae": 63.81692123413086,
+          "rmse": 82.10603139005684,
+          "r2": 0.40530240535736084,
+          "n": 7809
+        }
+      },
+      "by_rul_range": {
+        "0-50 (imminent)": {
+          "mae": 17.115262985229492,
+          "rmse": 45.858994355319766,
+          "r2": -9.098666191101074,
+          "n": 2750
+        },
+        "50-150 (approaching)": {
+          "mae": 63.73926544189453,
+          "rmse": 83.99173078252257,
+          "r2": -7.4663801193237305,
+          "n": 5500
+        },
+        "150-300 (early decline)": {
+          "mae": 35.968807220458984,
+          "rmse": 42.54524389776503,
+          "r2": 0.034770965576171875,
+          "n": 8023
+        },
+        "300+ (far from failure)": {
+          "mae": 110.75537872314453,
+          "rmse": 113.51536153617052,
+          "r2": -29.77877426147461,
+          "n": 3670
+        }
+      }
+    },
+    "final_window_per_run": {
+      "note": "Degenerate here (not useful): every run ends at RUL=0 by construction, so the target has zero variance and R2 is undefined. Kept only for continuity with the CMAPSS-style convention -- use sliding_window_all_steps.",
+      "capped_target_metrics": {
+        "mae": 2.7117984294891357,
+        "rmse": 4.987506898956499,
+        "r2": null,
+        "n": 55
+      },
+      "n_runs": 55
+    }
+  }
+}
