@@ -16,6 +16,11 @@ dependencies = [
 dev = [
     "pytest>=8.0"
 ]
+predictive = [
+    "numpy>=1.26",
+    "torch>=2.2",
+    "paho-mqtt>=2.1"
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
