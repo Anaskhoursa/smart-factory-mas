@@ -252,7 +252,7 @@ class PredictiveMaintenanceAgent:
             self.history[machine_id].append(row)
             self.sequence[machine_id] += 1
 
-            needed = max(self.models.rul_window, self.models.anomaly_window)
+            # RUL needs a full 30-step model window plus the prior rolling-feature\n            # context (10 steps by default) to exactly match training-time features.\n            needed = max(self.models.rul_window + ROLLING_WINDOW, self.models.anomaly_window)
             if len(self.history[machine_id]) < needed:
                 LOG.info("%s warming up model window: %d/%d", machine_id, len(self.history[machine_id]), needed)
                 return
