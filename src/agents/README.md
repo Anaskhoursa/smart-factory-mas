@@ -82,7 +82,8 @@ model.
   machine identity flags remain unscaled, matching training.
 - The anomaly score is mean squared reconstruction error. It is not a probability;
   `is_anomaly` compares it with the threshold saved during training.
-- The first report is emitted only after enough telemetry arrives to fill a
-  30-step window.
+- The first report is emitted after the 30-step model window and the additional
+  rolling-feature context are both available (40 messages with the default
+  10-step rolling window).
 - Missing/invalid telemetry is logged and rejected. No physical action is
   executed by this agent.
