@@ -191,7 +191,7 @@ class ModelBundle:
         if len(rul_array) < self.rul_window:
             pad = np.repeat(rul_array[:1], self.rul_window - len(rul_array), axis=0)
             rul_array = np.concatenate([pad, rul_array], axis=0)
-        rul_array = (rul_array - self.rul_mean) / np.maximum(self.rul_scale, 1e-8)
+        # The training scaler was fitted only on the 12 continuous sensor-derived\n        # features; machine one-hot flags are concatenated afterwards and stay 0/1.\n        continuous_indices = [i for i, name in enumerate(self.rul_features) if not name.startswith("is_")]\n        rul_array[:, continuous_indices] = (\n            rul_array[:, continuous_indices] - self.rul_mean\n        ) / np.maximum(self.rul_scale, 1e-8)
 
         # Anomaly model has its own raw-sensor scaler and its own threshold.
         anomaly_raw = raw[-self.anomaly_window:]
@@ -210,7 +210,7 @@ class PredictiveMaintenanceAgent:
     def __init__(self, models: ModelBundle):
         self.models = models
         self.history: dict[str, deque[dict[str, float]]] = defaultdict(
-            lambda: deque(maxlen=max(WINDOW_SIZE, ROLLING_WINDOW) + 1)
+            lambda: deque(maxlen=max(WINDOW_SIZE, ROLLING_WINDOW) + ROLLING_WINDOW)
         )
         self.sequence: dict[str, int] = defaultdict(int)
         self.client = mqtt.Client(
