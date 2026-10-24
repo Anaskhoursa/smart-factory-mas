@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "description": "Synthetic production orders. Times are simulation minutes from the simulator's start, not wall-clock seconds.",
+  "orders": [
+    {
+      "order_id": "PO-1001",
+      "product": "Housing A",
+      "quantity": 1200,
+      "completed_quantity": 0,
+      "due_at_sim_minute": 360,
+      "priority": "high",
+      "required_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "status": "open"
+    },
+    {
+      "order_id": "PO-1002",
+      "product": "Shaft B",
+      "quantity": 900,
+      "completed_quantity": 0,
+      "due_at_sim_minute": 720,
+      "priority": "normal",
+      "required_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "status": "open"
+    },
+    {
+      "order_id": "PO-1003",
+      "product": "Assembly C",
+      "quantity": 1500,
+      "completed_quantity": 0,
+      "due_at_sim_minute": 1200,
+      "priority": "high",
+      "required_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "status": "open"
+    },
+    {
+      "order_id": "PO-1004",
+      "product": "Inspection D",
+      "quantity": 700,
+      "completed_quantity": 0,
+      "due_at_sim_minute": 1800,
+      "priority": "normal",
+      "required_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "status": "open"
+    }
+  ]
+}

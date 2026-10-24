@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "time_basis": "simulation_minutes_from_start",
+  "description": "Synthetic recurring operating and maintenance windows. Minute-of-day is 0-1439.",
+  "operating_windows": [
+    {
+      "name": "day_shift",
+      "start_minute_of_day": 360,
+      "end_minute_of_day": 1320
+    }
+  ],
+  "maintenance_windows": [
+    {
+      "window_id": "MW-NIGHT",
+      "name": "Overnight maintenance window",
+      "start_minute_of_day": 0,
+      "end_minute_of_day": 360,
+      "allowed_tasks": [
+        "inspection",
+        "planned_repair",
+        "preventive_maintenance"
+      ]
+    },
+    {
+      "window_id": "MW-MIDDAY",
+      "name": "Short planned maintenance window",
+      "start_minute_of_day": 720,
+      "end_minute_of_day": 780,
+      "allowed_tasks": [
+        "inspection",
+        "minor_repair"
+      ]
+    }
+  ],
+  "rules": {
+    "windows_repeat_daily": true,
+    "minutes_per_day": 1440,
+    "maintenance_during_production_requires_approval": true,
+    "emergency_maintenance_may_override_window": true,
+    "emergency_override_requires_supervisor_approval": true
+  }
+}

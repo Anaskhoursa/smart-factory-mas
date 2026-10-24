@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "description": "Synthetic inventory. Quantity is on-hand stock; reserved_quantity is already committed to other jobs.",
+  "parts": [
+    {
+      "part_id": "PART-BRG-01",
+      "name": "Bearing assembly",
+      "compatible_machines": [
+        "M1",
+        "M2"
+      ],
+      "compatible_failures": [
+        "bearing_wear"
+      ],
+      "quantity_on_hand": 4,
+      "reserved_quantity": 1,
+      "reorder_level": 2,
+      "lead_time_minutes": 720
+    },
+    {
+      "part_id": "PART-CLG-01",
+      "name": "Cooling fan and filter kit",
+      "compatible_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "compatible_failures": [
+        "overheating"
+      ],
+      "quantity_on_hand": 3,
+      "reserved_quantity": 0,
+      "reorder_level": 1,
+      "lead_time_minutes": 480
+    },
+    {
+      "part_id": "PART-ALN-01",
+      "name": "Alignment shim and fixture kit",
+      "compatible_machines": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "compatible_failures": [
+        "misalignment"
+      ],
+      "quantity_on_hand": 2,
+      "reserved_quantity": 0,
+      "reorder_level": 1,
+      "lead_time_minutes": 960
+    },
+    {
+      "part_id": "PART-SHK-01",
+      "name": "Vibration isolator mount kit",
+      "compatible_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "compatible_failures": [
+        "random_shock"
+      ],
+      "quantity_on_hand": 2,
+      "reserved_quantity": 0,
+      "reorder_level": 1,
+      "lead_time_minutes": 1440
+    },
+    {
+      "part_id": "PART-SNS-01",
+      "name": "Temperature/vibration sensor kit",
+      "compatible_machines": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "compatible_failures": [
+        "sensor_fault"
+      ],
+      "quantity_on_hand": 5,
+      "reserved_quantity": 1,
+      "reorder_level": 2,
+      "lead_time_minutes": 240
+    }
+  ]
+}

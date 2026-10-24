@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "description": "Illustrative task estimates, not engineering instructions. Durations are simulation minutes and include diagnosis plus repair.",
+  "tasks": [
+    {
+      "task_id": "TASK-BEARING-01",
+      "failure_mode": "bearing_wear",
+      "task_name": "Bearing inspection and replacement",
+      "required_skills": [
+        "bearing_replacement"
+      ],
+      "required_parts": [
+        {
+          "part_id": "PART-BRG-01",
+          "quantity": 1
+        }
+      ],
+      "estimated_duration_minutes": 120,
+      "duration_uncertainty_minutes": 45,
+      "task_category": "planned_repair",
+      "requires_machine_stopped": true
+    },
+    {
+      "task_id": "TASK-OVERHEAT-01",
+      "failure_mode": "overheating",
+      "task_name": "Cooling-system inspection and repair",
+      "required_skills": [
+        "overheating_diagnostics",
+        "cooling_system"
+      ],
+      "required_parts": [
+        {
+          "part_id": "PART-CLG-01",
+          "quantity": 1
+        }
+      ],
+      "estimated_duration_minutes": 75,
+      "duration_uncertainty_minutes": 30,
+      "task_category": "minor_repair",
+      "requires_machine_stopped": true
+    },
+    {
+      "task_id": "TASK-MISALIGN-01",
+      "failure_mode": "misalignment",
+      "task_name": "Alignment inspection and correction",
+      "required_skills": [
+        "alignment"
+      ],
+      "required_parts": [
+        {
+          "part_id": "PART-ALN-01",
+          "quantity": 1
+        }
+      ],
+      "estimated_duration_minutes": 90,
+      "duration_uncertainty_minutes": 30,
+      "task_category": "planned_repair",
+      "requires_machine_stopped": true
+    },
+    {
+      "task_id": "TASK-SHOCK-01",
+      "failure_mode": "random_shock",
+      "task_name": "Inspect impact damage and vibration mounts",
+      "required_skills": [
+        "shock_damage_inspection"
+      ],
+      "required_parts": [
+        {
+          "part_id": "PART-SHK-01",
+          "quantity": 1
+        }
+      ],
+      "estimated_duration_minutes": 60,
+      "duration_uncertainty_minutes": 30,
+      "task_category": "inspection",
+      "requires_machine_stopped": true
+    },
+    {
+      "task_id": "TASK-GENERAL-01",
+      "failure_mode": "unknown",
+      "task_name": "General diagnostic inspection",
+      "required_skills": [
+        "general_mechanical"
+      ],
+      "required_parts": [],
+      "estimated_duration_minutes": 45,
+      "duration_uncertainty_minutes": 30,
+      "task_category": "inspection",
+      "requires_machine_stopped": true
+    }
+  ]
+}

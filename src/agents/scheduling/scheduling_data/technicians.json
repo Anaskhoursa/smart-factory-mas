@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "time_basis": "minute_of_day",
+  "description": "Synthetic technician roster. Skills and shifts are illustrative and should be calibrated against real factory practices if available.",
+  "technicians": [
+    {
+      "technician_id": "TECH-01",
+      "name": "Mechanical Technician A",
+      "skills": [
+        "bearing_replacement",
+        "alignment",
+        "general_mechanical"
+      ],
+      "shift_start_minute_of_day": 360,
+      "shift_end_minute_of_day": 840,
+      "available": true,
+      "max_concurrent_jobs": 1
+    },
+    {
+      "technician_id": "TECH-02",
+      "name": "Electromechanical Technician B",
+      "skills": [
+        "overheating_diagnostics",
+        "cooling_system",
+        "electrical_diagnostics",
+        "general_mechanical"
+      ],
+      "shift_start_minute_of_day": 480,
+      "shift_end_minute_of_day": 960,
+      "available": true,
+      "max_concurrent_jobs": 1
+    },
+    {
+      "technician_id": "TECH-03",
+      "name": "Maintenance Technician C",
+      "skills": [
+        "alignment",
+        "sensor_replacement",
+        "shock_damage_inspection",
+        "general_mechanical"
+      ],
+      "shift_start_minute_of_day": 720,
+      "shift_end_minute_of_day": 1200,
+      "available": true,
+      "max_concurrent_jobs": 1
+    }
+  ]
+}

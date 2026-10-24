@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import paho.mqtt.client as mqtt
 
 
@@ -7,10 +8,12 @@ class MQTTClient:
         client_id: str,
         host: str = "localhost",
         port: int = 1883,
+        on_message: Callable | None = None,
     ):
         self.client_id = client_id
         self.host = host
         self.port = port
+        self.message_handler = on_message
 
         self.client = mqtt.Client(
             mqtt.CallbackAPIVersion.VERSION2,
@@ -23,61 +26,38 @@ class MQTTClient:
         self.client.on_message = self._on_message
 
     def _on_connect(self, client, userdata, flags, reason_code, properties):
-        print(
-            f"[MQTT] Connected as '{self.client_id}' "
-            f"with reason: {reason_code}"
-        )
+        print(f"[MQTT] Connected as {self.client_id}: {reason_code}")
 
     def _on_disconnect(self, client, userdata, flags, reason_code, properties):
-        print(
-            f"[MQTT] Disconnected '{self.client_id}' "
-            f"with reason: {reason_code}"
-        )
+        print(f"[MQTT] Disconnected {self.client_id}: {reason_code}")
 
     def connect(self):
-        self.client.connect(
-            self.host,
-            self.port,
-            keepalive=60,
-        )
+        self.client.connect(self.host, self.port, keepalive=60)
         self.client.loop_start()
 
     def disconnect(self):
-        self.client.loop_stop()
         self.client.disconnect()
+        self.client.loop_stop()
 
     def publish(self, topic: str, payload: str, qos: int = 0):
-        result = self.client.publish(
-            topic,
-            payload,
-            qos=qos,
-        )
+        info = self.client.publish(topic, payload, qos=qos)
+        info.wait_for_publish()
+        return info
 
-        result.wait_for_publish()
-
-        return result
-    
-    
     def subscribe(self, topic: str, qos: int = 0):
-        result, mid = self.client.subscribe(topic, qos=qos)
-
+        result, _ = self.client.subscribe(topic, qos=qos)
         if result != mqtt.MQTT_ERR_SUCCESS:
-            raise RuntimeError(
-                f"Failed to subscribe to topic '{topic}'"
+            raise RuntimeError(f"Failed to subscribe to {topic!r}")
+
+    def _on_message(self, client, userdata, message):
+        if self.message_handler is not None:
+            self.message_handler(
+                message.topic,
+                message.payload,
+                message.qos,
             )
-
-        print(f"[MQTT] Subscribed to '{topic}'")
-        
-    def _on_message(
-        self,
-        client,
-        userdata,
-        message,
-    ):
-        payload = message.payload.decode("utf-8")
-
-        print(
-            f"[MQTT] Message received | "
-            f"topic={message.topic} | "
-            f"payload={payload}"
-        )
+        else:
+            print(
+                f"[MQTT] {message.topic}: "
+                f"{message.payload.decode('utf-8', errors='replace')}"
+            )
